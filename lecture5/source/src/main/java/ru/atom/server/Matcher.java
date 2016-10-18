@@ -13,16 +13,11 @@ import java.util.stream.Stream;
 public class Matcher implements Runnable {
     private static final Logger log = LogManager.getLogger(Matcher.class);
 
-    private MatchDao matchDao = new MatchDao();
-    private LikesDao likesDao = new LikesDao();
-
     @Override
     public void run() {
         while (true) {
-            List<Match> matches = likesDao.getMatches();
-            matches.stream()
-                    .flatMap(m -> Stream.of(m, m.reverse()))
-                    .forEach(m -> matchDao.insert(m));
+
+            // your code here
             try {
                 Thread.sleep(10_000);
             } catch (InterruptedException e) {
