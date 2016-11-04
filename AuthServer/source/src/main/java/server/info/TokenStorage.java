@@ -7,12 +7,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.ConcurrentHashMap;
-
 /**
  * Created by valentin on 23.10.16.
  */
 
-public class TokenStorage {
+public class TokenStorage /*implements Dao<User>*/{
     private static final Logger log = LogManager.getLogger(TokenStorage.class);
     private static ConcurrentHashMap<User, String> credentials;
     private static ConcurrentHashMap<User, Token> tokens;
@@ -23,7 +22,7 @@ public class TokenStorage {
 
     static {
         credentials = new ConcurrentHashMap<>();
-        credentials.put(new User("admin"), "admin");
+        credentials.put(new User("admin", "suka"), "admin");
         tokens = new ConcurrentHashMap<>();
         tokens.put(new User("admin"), new Token(1L));
         tokensReversed = new ConcurrentHashMap<>();
@@ -37,7 +36,7 @@ public class TokenStorage {
     }
 
     public static String registerNewUser(String user, String password){
-        return credentials.putIfAbsent(new User(user), password);
+        return credentials.putIfAbsent(new User(user, password), password);
     }
 
     public static boolean authenticate(String user, String password) throws Exception {
@@ -94,6 +93,11 @@ public class TokenStorage {
         }
 
         log.info("Correct token from '{}'", TokenStorage.tokensReversed.get(token));
+    }
+
+
+    public void insert(User person) {
+        Database.doTransactional(session -> session.save(person));
     }
 
 }

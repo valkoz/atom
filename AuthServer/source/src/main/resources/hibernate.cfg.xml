@@ -26,8 +26,7 @@
         <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
 
         <!-- Annotated entity classes -->
-        <mapping class="ru.atom.model.data.Like"/>
-        <mapping class="ru.atom.model.data.person.Person"/>
+        <mapping class="server.info.User"/>
 
     </session-factory>
 </hibernate-configuration>

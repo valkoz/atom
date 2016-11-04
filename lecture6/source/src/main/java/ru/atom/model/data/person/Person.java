@@ -1,6 +1,5 @@
 package ru.atom.model.data.person;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import ru.atom.model.data.Gender;
 import ru.atom.model.data.Image;
 import ru.atom.model.data.Location;
@@ -8,10 +7,8 @@ import ru.atom.model.data.Location;
 import javax.persistence.*;
 import java.net.URL;
 
-import static com.fasterxml.jackson.annotation.JsonInclude.Include.*;
-
 @Entity
-@Table(name = "person")
+@Table(name = "axaxa")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

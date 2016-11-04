@@ -1,12 +1,12 @@
 package server.api;
 
-import server.auth.AuthenticationFilter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.jetbrains.annotations.NotNull;
+import server.auth.AuthenticationFilter;
 
 /**
  * Created by valentin on 23.10.16.

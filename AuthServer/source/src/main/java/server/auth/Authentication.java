@@ -8,16 +8,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import server.info.Token;
 import server.info.TokenStorage;
+import server.info.User;
 
 import javax.ws.rs.*;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
+import java.sql.Timestamp;
 
 @Path("/auth")
 public class Authentication {
     private static final Logger log = LogManager.getLogger(Authentication.class);
-
+    private TokenStorage ts = new TokenStorage();
     // curl -i
     //      -X POST
     //      -H "Content-Type: application/x-www-form-urlencoded"
@@ -38,6 +40,7 @@ public class Authentication {
         if (TokenStorage.registerNewUser(user, password) != null) {
             return Response.status(Response.Status.NOT_ACCEPTABLE).build();
         }
+        ts.insert(new User(user, new Timestamp(System.currentTimeMillis()), password));
 
         log.info("New user '{}' registered", user);
         return Response.ok("User " + user + " registered.").build();

@@ -1,5 +1,6 @@
 package server.info;
 
+import java.util.Date;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -8,7 +9,9 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Token {
     public Long token;
+    public Date date;
     public Long getToken(){return token;}
+    public Date getDate(){return date;}
     public Token(Long token){
         this.token = token;
     }
